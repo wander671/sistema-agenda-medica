@@ -7,7 +7,7 @@ app.secret_key = "123456"
 
 @app.route("/")
 def inicio():
-    return redirect("/login")
+    return render_template("login.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -49,7 +49,7 @@ def dashboard():
     if "usuario" not in session:
         return redirect("/login")
 
-    return f"Bem-vindo, {session['usuario']}"
+    return render_template("dashboard.html", usuario=session["usuario"])
 
 
 @app.route("/logout")

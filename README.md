@@ -1,39 +1,134 @@
-# 🩺 Sistema de Agenda Médica
+# 🏥 Agenda Médica em Python + Flask
 
-Um sistema de agendamento e gestão médica desenvolvido com Python e Flask, utilizando SQLite para persistência de dados.
+Projeto desenvolvido para praticar desenvolvimento web com **Python**, **Flask** e **SQLite**, simulando um sistema simples de agendamento de consultas médicas.
 
-> **Status do Projeto:** 🚧 Em desenvolvimento (Fase de autenticação e banco de dados concluída).
+## 🚀 Tecnologias utilizadas
 
----
+* Python 3
+* Flask
+* SQLite
+* HTML5
+* CSS3
+* Jinja2
 
-## 📌 Funcionalidades Implementadas
+## 📚 Objetivo
 
-- [x] **Conexão com Banco de Dados:** Configuração do SQLite com criação automática das tabelas.
-- [x] **Povoamento Inicial (Seed):** Script para criação de usuário de teste/administrador.
-- [x] **Autenticação de Usuários:** Login seguro integrado com **Flask-Login**.
-- [x] **Gestão de Sessão:** Controle de acesso a rotas protegidas e sessão ativa do usuário.
+O objetivo deste projeto é consolidar conhecimentos em:
 
----
+* Estrutura de projetos Flask
+* Criação de banco de dados SQLite
+* CRUD básico
+* Login de usuários
+* Sessões (Session)
+* Templates HTML
+* Integração entre Flask e Banco de Dados
 
-## 🛠️ Tecnologias Utilizadas
+## 📁 Estrutura do projeto
 
-- **Linguagem:** Python 3.x
-- **Framework Web:** Flask
-- **Autenticação:** Flask-Login
-- **Banco de Dados:** SQLite
-- **Segurança:** Werkzeug (Hashing de senhas)
+```text
+agenda-medica/
+│
+├── app.py
+├── banco.py
+├── criar_tabela.py
+├── seed.py
+├── agenda.db
+├── templates/
+│   ├── login.html
+│   └── index.html
+└── README.md
+```
 
----
+## ⚙️ Como executar
 
-## 🚀 Como Executar o Projeto Localmente
+### Clone o projeto
 
-### Pré-requisitos
-- Python instalado (versão 3.10 ou superior recomendada)
-- Git instalado
+```bash
+git clone https://github.com/SEU-USUARIO/agenda-medica.git
+```
 
-### Passo a passo
+### Entre na pasta
 
-1. **Clone o repositório:**
-   ```bash
-   git clone [https://github.com/SEU-USUARIO/NOME-DO-REPOSITORIO.git](https://github.com/SEU-USUARIO/NOME-DO-REPOSITORIO.git)
-   cd NOME-DO-REPOSITORIO
+```bash
+cd agenda-medica
+```
+
+### Crie um ambiente virtual
+
+```bash
+python -m venv .venv
+```
+
+### Ative o ambiente virtual
+
+Windows
+
+```bash
+.venv\Scripts\activate
+```
+
+Linux/Mac
+
+```bash
+source .venv/bin/activate
+```
+
+### Instale as dependências
+
+```bash
+pip install flask
+```
+
+### Crie as tabelas
+
+```bash
+python criar_tabela.py
+```
+
+### Insira dados de teste
+
+```bash
+python seed.py
+```
+
+### Execute o projeto
+
+```bash
+python app.py
+```
+
+Depois abra:
+
+```
+http://127.0.0.1:5000
+```
+
+## 💻 Aprendizados
+
+Durante este projeto foram praticados:
+
+* Organização de projetos Flask
+* Banco de dados SQLite
+* SQL (CREATE, INSERT e SELECT)
+* Templates HTML
+* Sistema de Login
+* Sessões de usuário
+* Estrutura MVC
+
+## 🎯 Próximas melhorias
+
+* Cadastro de pacientes
+* Cadastro de médicos
+* Agendamento de consultas pela interface
+* Edição de consultas
+* Exclusão de consultas
+* Interface responsiva
+* Autenticação mais segura
+
+## 👨‍💻 Autor
+
+**Wander Farias**
+
+GitHub: https://github.com/wander671
+
+LinkedIn: https://www.linkedin.com/in/wander-farias-396066363
