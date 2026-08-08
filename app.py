@@ -1,15 +1,18 @@
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, jsonify
 from banco import conectar
 
 app = Flask(__name__)
 # Chave usada para proteger a sessão
 app.secret_key = "123456"
 
+# Define a rota principal (raiz) do sistema
 @app.route("/")
 def inicio():
     return render_template("login.html")
 
 
+
+# Rota que aceita exibições de página (GET) e envios de formulário (POST)
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
@@ -42,6 +45,56 @@ def login():
 
     return render_template("login.html")
 
+
+
+# Define a rota da API para consultar as consultas médicas
+@app.route("/api/consultas")
+def api_consultas():
+
+    # Abre a conexão com o banco de dados 
+    conexao = conectar()
+
+    # Cria o cursor para executar comandos SQL
+    cursor = conexao.cursor()
+
+    # Buscar as consultas e junta com os dados dos pacientes e médicos
+    cursor.execute("""
+        SELECT
+            consultas.id,
+            pacientes.nome AS paciente,
+            medicos.nome AS medico,
+            consultas.data,
+            consultas.hora
+        FROM consultas
+        JOIN pacientes ON consultas.paciente_id = pacientes.id
+        JOIN medicos ON consultas.medico_id = medicos.id
+    """)
+
+    # Pega todos os resultados encontrados
+    consultas = cursor.fetchall()
+
+    # Fecha a conexão com o banco
+    conexao.close()
+
+    # Cria uma lista vazia para guarda os resultados 
+    resultado = []
+
+    # Percorre cada consulta encontrada
+    for consulta in consultas:
+        resultado.append({
+            "id": consulta[0],
+            "paciente": consulta[1],
+            "medico": consulta[2],
+            "data": consulta[3],
+            "hora": consulta[4]
+        })
+
+    # Retorna os dados da API em formato JSON
+    return jsonify(resultado)
+
+
+
+# Define a rota para acessar a página do dashboard
 @app.route("/dashboard")
 def dashboard():
 
@@ -52,6 +105,8 @@ def dashboard():
     return render_template("dashboard.html", usuario=session["usuario"])
 
 
+
+# Define a rota para o encerramento da sessão do usuário
 @app.route("/logout")
 def logout():
 
