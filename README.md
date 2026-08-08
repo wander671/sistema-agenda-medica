@@ -1,27 +1,30 @@
-# 🏥 Agenda Médica em Python + Flask
+# 🏥 Agenda Médica
 
-Projeto desenvolvido para praticar desenvolvimento web com **Python**, **Flask** e **SQLite**, simulando um sistema simples de agendamento de consultas médicas.
+Sistema web de gerenciamento de consultas médicas desenvolvido com **Python**, **Flask** e **SQLite**.
+
+O projeto está sendo desenvolvido como parte da minha jornada de aprendizado em **desenvolvimento Back-end com Python**, aplicando na prática conceitos de desenvolvimento web, banco de dados, autenticação e integração entre aplicações.
 
 ## 🚀 Tecnologias utilizadas
 
-* Python 3
-* Flask
-* SQLite
-* HTML5
-* CSS3
-* Jinja2
+* 🐍 Python 3
+* 🌐 Flask
+* 🗄️ SQLite
+* 📄 HTML5
+* 🎨 CSS3
+* 🔧 Jinja2
+* 🌱 Git e GitHub
 
-## 📚 Objetivo
+## 📚 Funcionalidades
 
-O objetivo deste projeto é consolidar conhecimentos em:
+Atualmente, o projeto possui:
 
-* Estrutura de projetos Flask
-* Criação de banco de dados SQLite
-* CRUD básico
-* Login de usuários
-* Sessões (Session)
-* Templates HTML
-* Integração entre Flask e Banco de Dados
+* 🔐 Sistema de login
+* 👤 Autenticação de usuários
+* 🔒 Controle de sessão
+* 📊 Dashboard
+* 🗄️ Integração com banco de dados SQLite
+* 🧪 Dados de teste para pacientes e médicos
+* 🌐 Estrutura de aplicação web com Flask
 
 ## 📁 Estrutura do projeto
 
@@ -33,102 +36,120 @@ agenda-medica/
 ├── criar_tabela.py
 ├── seed.py
 ├── agenda.db
+│
 ├── templates/
 │   ├── login.html
-│   └── index.html
+│   └── dashboard.html
+│
 └── README.md
 ```
 
-## ⚙️ Como executar
+## ⚙️ Como executar o projeto
 
-### Clone o projeto
-
-```bash
-git clone https://github.com/SEU-USUARIO/agenda-medica.git
-```
-
-### Entre na pasta
+### 1. Clone o repositório
 
 ```bash
-cd agenda-medica
+git clone https://github.com/wander671/sistema-agenda-medica.git
 ```
 
-### Crie um ambiente virtual
+### 2. Entre na pasta do projeto
+
+```bash
+cd sistema-agenda-medica
+```
+
+### 3. Crie um ambiente virtual
 
 ```bash
 python -m venv .venv
 ```
 
-### Ative o ambiente virtual
+### 4. Ative o ambiente virtual
 
-Windows
+**Windows:**
 
 ```bash
 .venv\Scripts\activate
 ```
 
-Linux/Mac
+**Linux/Mac:**
 
 ```bash
 source .venv/bin/activate
 ```
 
-### Instale as dependências
+### 5. Instale o Flask
 
 ```bash
 pip install flask
 ```
 
-### Crie as tabelas
+### 6. Crie as tabelas do banco de dados
 
 ```bash
 python criar_tabela.py
 ```
 
-### Insira dados de teste
+### 7. Insira os dados de teste
 
 ```bash
 python seed.py
 ```
 
-### Execute o projeto
+### 8. Execute a aplicação
 
 ```bash
 python app.py
 ```
 
-Depois abra:
+Depois, acesse no navegador:
 
-```
+```text
 http://127.0.0.1:5000
 ```
 
-## 💻 Aprendizados
+## 💻 Conceitos praticados
 
-Durante este projeto foram praticados:
+Durante o desenvolvimento deste projeto, estou praticando:
 
-* Organização de projetos Flask
+* Desenvolvimento Back-end com Python
+* Framework Flask
+* Rotas e requisições HTTP
+* Templates HTML com Jinja2
 * Banco de dados SQLite
-* SQL (CREATE, INSERT e SELECT)
-* Templates HTML
-* Sistema de Login
-* Sessões de usuário
-* Estrutura MVC
+* SQL
+* CRUD
+* Autenticação de usuários
+* Sessões
+* Organização de projetos
+* Git e GitHub
 
-## 🎯 Próximas melhorias
+## 🎯 Próximos passos
 
-* Cadastro de pacientes
-* Cadastro de médicos
-* Agendamento de consultas pela interface
-* Edição de consultas
-* Exclusão de consultas
-* Interface responsiva
-* Autenticação mais segura
+O projeto continuará evoluindo com novas funcionalidades, incluindo:
+
+* 👨‍⚕️ Cadastro de médicos
+* 🧑‍🤝‍🧑 Cadastro de pacientes
+* 📅 Agendamento de consultas pela interface
+* ✏️ Edição de consultas
+* 🗑️ Exclusão de consultas
+* 🔌 Integração com APIs externas
+* 🔐 Melhorias na segurança da autenticação
+* 📱 Interface responsiva
+
+## 📈 Status do projeto
+
+🚧 **Em desenvolvimento**
+
+Este projeto faz parte do meu processo de aprendizado e evolução na área de **desenvolvimento Back-end com Python**.
 
 ## 👨‍💻 Autor
 
 **Wander Farias**
 
-GitHub: https://github.com/wander671
+🔗 **GitHub:**
+https://github.com/wander671
 
-LinkedIn: https://www.linkedin.com/in/wander-farias-396066363
+🔗 **LinkedIn:**
+https://www.linkedin.com/in/wander-farias-396066363
+
