@@ -13,6 +13,7 @@ O projeto está sendo desenvolvido como parte da minha jornada de aprendizado em
 * 🎨 CSS3
 * 🔧 Jinja2
 * 🌱 Git e GitHub
+* 🌐 Requests
 
 ## 📚 Funcionalidades
 
@@ -25,6 +26,9 @@ Atualmente, o projeto possui:
 * 🗄️ Integração com banco de dados SQLite
 * 🧪 Dados de teste para pacientes e médicos
 * 🌐 Estrutura de aplicação web com Flask
+* 🔌 Consumo de APIs externas
+* 📡 Requisições HTTP com Requests
+* ⚠️ Tratamento de erros de API
 
 ## 📁 Estrutura do projeto
 
@@ -35,6 +39,8 @@ agenda-medica/
 ├── banco.py
 ├── criar_tabela.py
 ├── seed.py
+├── api_externa.py
+├── requirements.txt
 ├── agenda.db
 │
 ├── templates/
@@ -81,7 +87,7 @@ source .venv/bin/activate
 ### 5. Instale o Flask
 
 ```bash
-pip install flask
+pip install -r requirements.txt
 ```
 
 ### 6. Crie as tabelas do banco de dados
@@ -136,6 +142,10 @@ O projeto continuará evoluindo com novas funcionalidades, incluindo:
 * 🔌 Integração com APIs externas
 * 🔐 Melhorias na segurança da autenticação
 * 📱 Interface responsiva
+* Consumo de APIs externas
+* Biblioteca Requests
+* JSON
+* Tratamento de erros HTTP
 
 ## 📈 Status do projeto
 

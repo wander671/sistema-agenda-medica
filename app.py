@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, jsonify
 from banco import conectar
+import requests
 
 app = Flask(__name__)
 # Chave usada para proteger a sessão
@@ -116,7 +117,36 @@ def logout():
     # Volta para o login
     return redirect("/login")
 
-    
+
+# Define a rota '/usuarios-api' e associa à função abaixo
+@app.route("/usuarios-api")
+def usuarios_api():
+    url = "https://jsonplaceholder.typicode.com/users"
+
+    resposta = requests.get(url)
+
+    dados = resposta.json()
+
+    return jsonify(dados)
+
+
+# A rota aceita um parâmetro dinâmico 'id' do tipo inteiro via URL
+@app.route("/usuario-api/<int:id>")
+def usuario_api(id):
+    url = f"https://jsonplaceholder.typicode.com/users/{id}"
+
+    try:
+        resposta = requests.get(url, timeout=5)
+
+        if resposta.status_code == 404:
+            return jsonify({"erro": "Usuário não encontrado"}), 404
+
+        dados = resposta.json()
+
+        return jsonify(dados)
+
+    except requests.RequestException:
+        return jsonify({"erro": "Erro ao acessar a API externa"}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
