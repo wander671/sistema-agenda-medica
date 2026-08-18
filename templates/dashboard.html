@@ -2,17 +2,111 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Agenda Médica</title>
+
+    <!-- CSS do Tabulator -->
+    <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet">
 </head>
+
 <body>
 
     <h1>Agenda Médica</h1>
 
     <h2>Bem-vindo, {{ usuario }}</h2>
-    
+
     <p>Você está logado no sistema.</p>
 
     <a href="/logout">Sair</a>
+
+    <hr>
+
+    <h2>Consultas Médicas</h2>
+
+    <!-- Campo de pesquisa -->
+    <input
+        type="text"
+        id="filtro"
+        placeholder="Pesquisar paciente..."
+    >
+
+    <br><br>
+
+    <!-- Tabela -->
+    <div id="tabela-consultas"></div>
+
+    <!-- JavaScript do Tabulator -->
+    <script src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
+
+    <script>
+        // Criando a tabela
+        const tabela = new Tabulator("#tabela-consultas", {
+
+            height: "500px",
+
+            layout: "fitColumns",
+
+            pagination: false,
+
+            paginationSize: 5,
+
+            ajaxURL: "/api/consultas",
+
+            columns: [
+                {
+                    title: "ID",
+                    field: "id",
+                    sorter: "number"
+                },
+                {
+                    title: "Paciente",
+                    field: "paciente",
+                    sorter: "string",
+                    headerFilter: "input"
+                },
+                {
+                    title: "Médico",
+                    field: "medico",
+                    sorter: "string",
+                    headerFilter: "input"
+                },
+                {
+                    title: "Data",
+                    field: "data",
+                    sorter: "string",
+                    headerFilter: "input"
+                },
+                {
+                    title: "Hora",
+                    field: "hora",
+                    sorter: "string",
+                    headerFilter: "input"
+                },
+                {
+                    title: "Ações",
+                    formatter: function(cell) {
+                        return "<button>Excluir</button>";
+                    },
+                    width: 100,
+                    hozAlign: "center"
+                    
+                
+                }
+            ]
+        });
+
+
+        // Filtro por paciente
+        document
+            .getElementById("filtro")
+            .addEventListener("keyup", function() {
+
+                const valor = this.value;
+
+                tabela.setFilter("paciente", "like", valor);
+            });
+    </script>
 
 </body>
 </html>
