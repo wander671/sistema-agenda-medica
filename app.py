@@ -94,6 +94,32 @@ def api_consultas():
     return jsonify(resultado)
 
 
+# Define a rota HTTP DELETE para excluir uma consulta específica pelo ID via URL
+@app.route("/api/consultas/<int:id>", methods=["DELETE"])
+def excluir_consulta(id):
+
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute(
+        "DELETE FROM consultas WHERE id = ?",
+        (id,)
+    )
+
+    conexao.commit()
+
+    if cursor.rowcount == 0:
+        conexao.close()
+        return jsonify({"erro": "Consulta não encontrada"}), 404
+
+    conexao.close()
+
+    return jsonify({
+        "mensagem": "Consulta excluída com sucesso!",
+        "id": id
+    }), 200
+
+
 
 # Define a rota para acessar a página do dashboard
 @app.route("/dashboard")

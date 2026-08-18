@@ -86,10 +86,40 @@
                 {
                     title: "Ações",
                     formatter: function(cell) {
-                        return "<button>Excluir</button>";
+                        return "<button class= 'btn-excluir' >Excluir</button>";
                     },
                     width: 100,
-                    hozAlign: "center"
+                    hozAlign: "center",
+
+                    cellClick: function(e, cell) {
+
+                        const id = cell.getRow().getData().id;
+
+                        if (!confirm("Tem certeza que deseja excluir esta consulta?")) {
+                            return;
+                        }
+
+                        fetch("/api/consultas/"+ id, {
+                            method: "DELETE"
+                        })
+                        .then(response => response.json())
+                        .then(dados => {
+
+                            if (dados.erro) {
+                                alert(dados.erro);
+                                return
+                            }
+
+                            alert(dados.mensagem);
+
+                            // Remove a linha da tabela
+                            cell.getRow().delete();
+                        })
+                        .catch(erro =>{
+                            console.error("Erro:", erro);
+                            alert("Erro ao excluir a consulta.");
+                        });
+                    }
                     
                 
                 }
