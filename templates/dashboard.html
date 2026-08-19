@@ -4,42 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Agenda Médica</title>
+    <title>Dashboard | Agenda Médica</title>
 
     <!-- CSS do Tabulator -->
-    <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet">
+    <link
+        href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- CSS do sistema -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
 </head>
 
 <body>
 
-    <h1>Agenda Médica</h1>
+    <div class="dashboard-container">
 
-    <h2>Bem-vindo, {{ usuario }}</h2>
+        <!-- Cabeçalho -->
+        <header class="dashboard-header">
 
-    <p>Você está logado no sistema.</p>
+            <div>
+                <div class="dashboard-logo">🏥</div>
 
-    <a href="/logout">Sair</a>
+                <h1>Agenda Médica</h1>
 
-    <hr>
+                <p>Gerenciamento de consultas</p>
+            </div>
 
-    <h2>Consultas Médicas</h2>
+            <a href="/logout" class="btn-logout">
+                Sair
+            </a>
 
-    <!-- Campo de pesquisa -->
-    <input
-        type="text"
-        id="filtro"
-        placeholder="Pesquisar paciente..."
-    >
+        </header>
 
-    <br><br>
 
-    <!-- Tabela -->
-    <div id="tabela-consultas"></div>
+        <!-- Boas-vindas -->
+        <section class="welcome-card">
+
+            <div>
+                <h2>Olá, {{ usuario }}! 👋</h2>
+
+                <p>
+                    Você está logado no sistema.
+                    Aqui você pode visualizar e gerenciar as consultas médicas.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- Área de consultas -->
+        <section class="consultas-card">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>📋 Consultas Médicas</h2>
+
+                    <p>
+                        Consulte e gerencie os agendamentos.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- Busca -->
+            <div class="search-box">
+
+                <label for="filtro">
+                    🔎 Pesquisar paciente
+                </label>
+
+                <input
+                    type="text"
+                    id="filtro"
+                    placeholder="Digite o nome do paciente..."
+                >
+
+            </div>
+
+
+            <!-- Tabela -->
+            <div class="table-container">
+
+                <div id="tabela-consultas"></div>
+
+            </div>
+
+        </section>
+
+    </div>
+
 
     <!-- JavaScript do Tabulator -->
     <script src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
 
+
     <script>
+
         // Criando a tabela
         const tabela = new Tabulator("#tabela-consultas", {
 
@@ -54,41 +120,52 @@
             ajaxURL: "/api/consultas",
 
             columns: [
+
                 {
                     title: "ID",
                     field: "id",
                     sorter: "number"
                 },
+
                 {
                     title: "Paciente",
                     field: "paciente",
                     sorter: "string",
                     headerFilter: "input"
                 },
+
                 {
                     title: "Médico",
                     field: "medico",
                     sorter: "string",
                     headerFilter: "input"
                 },
+
                 {
                     title: "Data",
                     field: "data",
                     sorter: "string",
                     headerFilter: "input"
                 },
+
                 {
                     title: "Hora",
                     field: "hora",
                     sorter: "string",
                     headerFilter: "input"
                 },
+
                 {
                     title: "Ações",
+
                     formatter: function(cell) {
-                        return "<button class= 'btn-excluir' >Excluir</button>";
+
+                        return "<button class='btn-excluir'>Excluir</button>";
+
                     },
+
                     width: 100,
+
                     hozAlign: "center",
 
                     cellClick: function(e, cell) {
@@ -99,31 +176,40 @@
                             return;
                         }
 
-                        fetch("/api/consultas/"+ id, {
+                        fetch("/api/consultas/" + id, {
                             method: "DELETE"
                         })
+
                         .then(response => response.json())
+
                         .then(dados => {
 
                             if (dados.erro) {
                                 alert(dados.erro);
-                                return
+                                return;
                             }
 
                             alert(dados.mensagem);
 
                             // Remove a linha da tabela
                             cell.getRow().delete();
+
                         })
-                        .catch(erro =>{
+
+                        .catch(erro => {
+
                             console.error("Erro:", erro);
+
                             alert("Erro ao excluir a consulta.");
+
                         });
+
                     }
-                    
-                
+
                 }
+
             ]
+
         });
 
 
@@ -135,7 +221,9 @@
                 const valor = this.value;
 
                 tabela.setFilter("paciente", "like", valor);
+
             });
+
     </script>
 
 </body>

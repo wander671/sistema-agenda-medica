@@ -14,6 +14,7 @@ O projeto está sendo desenvolvido como parte da minha jornada de aprendizado em
 * 🔧 Jinja2
 * 📊 Tabulator
 * 🌐 Requests
+* 💻 JavaScript
 * 🌱 Git e GitHub
 
 ## 📚 Funcionalidades
@@ -23,7 +24,10 @@ Atualmente, o projeto possui:
 * 🔐 Sistema de login
 * 👤 Autenticação de usuários
 * 🔒 Controle de sessão
+* 🎨 Interface de login com visual profissional
+* 👁️ Mostrar e ocultar senha
 * 📊 Dashboard
+* 🎨 Dashboard com interface moderna e responsiva
 * 🗄️ Integração com banco de dados SQLite
 * 🧑‍🤝‍🧑 Cadastro e utilização de dados de pacientes
 * 👨‍⚕️ Dados de médicos
@@ -41,6 +45,30 @@ Atualmente, o projeto possui:
 * 🔌 Exclusão de consultas através de API REST
 * 🗄️ Exclusão dos registros diretamente no SQLite
 * 🔄 Atualização da tabela após exclusão
+
+## 🎨 Melhorias de interface
+
+O projeto recebeu melhorias visuais para proporcionar uma experiência mais próxima de um sistema profissional.
+
+### Tela de Login
+
+* 🏥 Identidade visual da Agenda Médica
+* 🔐 Card centralizado para autenticação
+* 👤 Campos de usuário e senha estilizados
+* 👁️ Botão para mostrar e ocultar senha
+* 🔵 Botão de login moderno
+* ✨ Efeitos de interação
+* 📱 Layout responsivo
+
+### Dashboard
+
+* 🏥 Cabeçalho com identidade visual
+* 👋 Área de boas-vindas ao usuário
+* 🚪 Botão de logout estilizado
+* 🔎 Campo de pesquisa moderno
+* 📋 Área de consultas organizada em painel
+* 🗑️ Botão de exclusão estilizado
+* 📱 Responsividade para diferentes tamanhos de tela
 
 ## 🔌 API de consultas
 
@@ -86,6 +114,9 @@ agenda-medica/
 ├── templates/
 │   ├── login.html
 │   └── dashboard.html
+│
+├── static/
+│   └── style.css
 │
 └── README.md
 ```
@@ -163,6 +194,8 @@ Durante o desenvolvimento deste projeto, estou praticando:
 * Rotas e requisições HTTP
 * Métodos HTTP GET e DELETE
 * Templates HTML com Jinja2
+* CSS3
+* JavaScript
 * Banco de dados SQLite
 * SQL
 * CRUD
@@ -174,10 +207,11 @@ Durante o desenvolvimento deste projeto, estou praticando:
 * JSON
 * Tratamento de erros HTTP
 * Tabulator
-* JavaScript
 * Fetch API
 * Integração entre Front-end e Back-end
 * Integração entre Flask e SQLite
+* Design responsivo
+* Experiência do usuário
 * Organização de projetos
 * Git e GitHub
 
@@ -191,8 +225,8 @@ O projeto continuará evoluindo com novas funcionalidades, incluindo:
 * 📅 Agendamento de consultas pela interface
 * 🔎 Sistema de busca de consultas
 * 🔐 Melhorias na segurança da autenticação
-* 📱 Interface responsiva
-* 🚀 Melhorias na experiência do usuário
+* 📊 Novos recursos no dashboard
+* 🚀 Melhorias contínuas na experiência do usuário
 
 ## 📈 Status do projeto
 
@@ -205,7 +239,10 @@ Este projeto faz parte do meu processo de aprendizado e evolução na área de *
 **Wander Farias**
 
 🔗 **GitHub:**
+
 https://github.com/wander671
 
 🔗 **LinkedIn:**
+
 https://www.linkedin.com/in/wander-farias-396066363/
+
