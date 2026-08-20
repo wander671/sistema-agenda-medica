@@ -72,11 +72,11 @@
             </div>
 
 
-            <!-- Busca -->
+            <!-- Busca Paciente-->
             <div class="search-box">
 
                 <label for="filtro">
-                    🔎 Pesquisar paciente
+                   🔎 Pesquisar paciente
                 </label>
 
                 <input
@@ -85,6 +85,36 @@
                     placeholder="Digite o nome do paciente..."
                 >
 
+            </div>
+
+            <!--Busca Médico-->
+            <div class="search-box">
+
+                <label for="filtro-medico">
+                    🔎 Pesquisar médico
+                </label>
+
+                <input
+                    type="text"
+                    id="filtro-medico"
+                    placeholder="Digite o nome do médico..."
+                >
+
+            </div>
+
+            <!--Busca geral-->
+            <div class="search-box">
+
+                <label for="filtro-geral">
+                     🔎 Busca geral
+                </label>
+
+                <input
+                    type="text"
+                    id="filtro-geral"
+                    placeholder="Digite paciente ou médico..."
+                >
+            
             </div>
 
 
@@ -97,7 +127,7 @@
 
         </section>
 
-    </div>
+    
 
 
     <!-- JavaScript do Tabulator -->
@@ -213,16 +243,68 @@
         });
 
 
-        // Filtro por paciente
-        document
-            .getElementById("filtro")
-            .addEventListener("keyup", function() {
+// Filtro por paciente
+document
+    .getElementById("filtro")
+    .addEventListener("keyup", function() {
 
-                const valor = this.value;
+        const valor = this.value;
 
-                tabela.setFilter("paciente", "like", valor);
+        // Remove o filtro geral
+        tabela.clearFilter();
 
-            });
+        // Aplica filtro por paciente
+        if (valor !== "") {
+            tabela.setFilter("paciente", "like", valor);
+        }
+
+    });
+
+
+// Filtro por médico
+document
+    .getElementById("filtro-medico")
+    .addEventListener("keyup", function() {
+
+        const valor = this.value;
+
+        // Remove o filtro geral
+        tabela.clearFilter();
+
+        // Aplica filtro por médico
+        if (valor !== "") {
+            tabela.setFilter("medico", "like", valor);
+        }
+
+    });
+
+
+// Busca geral por paciente OU médico
+document
+    .getElementById("filtro-geral")
+    .addEventListener("keyup", function() {
+
+        const valor = this.value.toLowerCase();
+
+        // Limpa os filtros anteriores
+        tabela.clearFilter();
+
+        // Se estiver vazio, mostra todas as consultas
+        if (valor === "") {
+            return;
+        }
+
+        // Procura no paciente OU no médico
+        tabela.setFilter(function(data) {
+
+            const paciente = String(data.paciente).toLowerCase();
+            const medico = String(data.medico).toLowerCase();
+
+            return paciente.includes(valor) || medico.includes(valor);
+
+        });
+
+    });
 
     </script>
 
