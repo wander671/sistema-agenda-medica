@@ -37,7 +37,9 @@ Atualmente, o projeto possui:
 * 📡 Requisições HTTP com Requests
 * ⚠️ Tratamento de erros de API
 * 📊 Tabela dinâmica com Tabulator
-* 🔎 Filtros por paciente, médico, data e hora
+* 🔎 Busca de consultas por paciente
+* 👨‍⚕️ Busca de consultas por médico
+* 🔎 Busca geral por paciente ou médico
 * ↕️ Ordenação dos dados
 * 📜 Rolagem vertical para visualização das consultas
 * ⚙️ Coluna de ações na tabela
@@ -214,6 +216,11 @@ Durante o desenvolvimento deste projeto, estou praticando:
 * Experiência do usuário
 * Organização de projetos
 * Git e GitHub
+* Tabulator
+* Filtros dinâmicos
+* Busca por múltiplos campos
+* JavaScript
+* Fetch API
 
 ## 🎯 Próximos passos
 
@@ -223,7 +230,6 @@ O projeto continuará evoluindo com novas funcionalidades, incluindo:
 * 👨‍⚕️ Cadastro de médicos pela interface
 * 🧑‍🤝‍🧑 Cadastro de pacientes pela interface
 * 📅 Agendamento de consultas pela interface
-* 🔎 Sistema de busca de consultas
 * 🔐 Melhorias na segurança da autenticação
 * 📊 Novos recursos no dashboard
 * 🚀 Melhorias contínuas na experiência do usuário
