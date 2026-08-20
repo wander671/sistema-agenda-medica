@@ -190,7 +190,6 @@ http://127.0.0.1:5000
 ## 💻 Conceitos praticados
 
 Durante o desenvolvimento deste projeto, estou praticando:
-
 * Desenvolvimento Back-end com Python
 * Framework Flask
 * Rotas e requisições HTTP
@@ -209,6 +208,8 @@ Durante o desenvolvimento deste projeto, estou praticando:
 * JSON
 * Tratamento de erros HTTP
 * Tabulator
+* Filtros dinâmicos
+* Busca por múltiplos campos
 * Fetch API
 * Integração entre Front-end e Back-end
 * Integração entre Flask e SQLite
@@ -216,11 +217,6 @@ Durante o desenvolvimento deste projeto, estou praticando:
 * Experiência do usuário
 * Organização de projetos
 * Git e GitHub
-* Tabulator
-* Filtros dinâmicos
-* Busca por múltiplos campos
-* JavaScript
-* Fetch API
 
 ## 🎯 Próximos passos
 
