@@ -52,11 +52,19 @@ def login():
 @app.route("/api/consultas")
 def api_consultas():
 
+    busca = request.args.get("busca")
+
+    if busca:
+        print("Busca recebida:", busca)
+
     # Abre a conexão com o banco de dados 
     conexao = conectar()
 
     # Cria o cursor para executar comandos SQL
     cursor = conexao.cursor()
+
+    # Permite colocar uma variável dentro de um texto
+    termo = f"%{busca}%"
 
     # Buscar as consultas e junta com os dados dos pacientes e médicos
     cursor.execute("""
@@ -69,7 +77,9 @@ def api_consultas():
         FROM consultas
         JOIN pacientes ON consultas.paciente_id = pacientes.id
         JOIN medicos ON consultas.medico_id = medicos.id
-    """)
+        WHERE pacientes.nome LIKE ?
+            or medicos.nome LIKE ?
+    """, (termo, termo))
 
     # Pega todos os resultados encontrados
     consultas = cursor.fetchall()
