@@ -51,43 +51,59 @@ def login():
 # Define a rota da API para consultar as consultas médicas
 @app.route("/api/consultas")
 def api_consultas():
+    # Recebe o termo de busca pela URL
+    busca = request.args.get("busca", "").strip()
 
-    busca = request.args.get("busca")
-
-    if busca:
-        print("Busca recebida:", busca)
-
-    # Abre a conexão com o banco de dados 
+    # Abre a conexão com banco de dados
     conexao = conectar()
 
     # Cria o cursor para executar comandos SQL
     cursor = conexao.cursor()
 
-    # Permite colocar uma variável dentro de um texto
-    termo = f"%{busca}%"
+    # Se existe um termo de busca
+    if busca:
+        print("Busca recebida:", busca)
+        # Adiciona % para permitir encontrar o termo em qualquer parte do nome
+        termo = f"%{busca}%"
 
-    # Buscar as consultas e junta com os dados dos pacientes e médicos
-    cursor.execute("""
-        SELECT
-            consultas.id,
-            pacientes.nome AS paciente,
-            medicos.nome AS medico,
-            consultas.data,
-            consultas.hora
-        FROM consultas
-        JOIN pacientes ON consultas.paciente_id = pacientes.id
-        JOIN medicos ON consultas.medico_id = medicos.id
-        WHERE pacientes.nome LIKE ?
-            or medicos.nome LIKE ?
-    """, (termo, termo))
+        # Busca pelo nome do paciente OU pelo nome do Médico
+        cursor.execute("""
+            SELECT
+                consultas.id,
+                pacientes.nome AS paciente,
+                medicos.nome AS medico,
+                consultas.data,
+                consultas.hora
+            FROM consultas
+            JOIN pacientes ON consultas.paciente_id = pacientes.id
+            JOIN medicos ON consultas.medico_id = medicos.id
+            WHERE pacientes.nome LIKE ?
+                OR medicos.nome LIKE ?
+        """, (termo, termo))
+
+    # Se não existe termo de busca
+    else:
+        print("Busca vazia: exibindo todas as consultas")
+        cursor.execute("""
+            SELECT
+                consultas.id,
+                pacientes.nome AS paciente,
+                medicos.nome AS medico,
+                consultas.data,
+                consultas.hora
+            FROM consultas
+            JOIN pacientes ON consultas.paciente_id = pacientes.id
+            JOIN medicos ON consultas.medico_id = medicos.id
+        """)
+
 
     # Pega todos os resultados encontrados
     consultas = cursor.fetchall()
 
-    # Fecha a conexão com o banco
+    # Fecha a conexão com o banco 
     conexao.close()
 
-    # Cria uma lista vazia para guarda os resultados 
+    # Cria uma lista para armazenar os resultados
     resultado = []
 
     # Percorre cada consulta encontrada
