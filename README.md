@@ -2,7 +2,7 @@
 
 Sistema web de gerenciamento de consultas médicas desenvolvido com **Python**, **Flask** e **SQLite**.
 
-O projeto está sendo desenvolvido como parte da minha jornada de aprendizado em **desenvolvimento Back-end com Python**, aplicando na prática conceitos de desenvolvimento web, banco de dados, autenticação, APIs, CRUD, SQL e integração entre Front-end e Back-end.
+O projeto está sendo desenvolvido como parte da minha jornada de aprendizado em **desenvolvimento Back-end com Python**, aplicando na prática conceitos de desenvolvimento web, banco de dados, autenticação, APIs, CRUD, SQL, tratamento de erros e integração entre Front-end e Back-end.
 
 ## 🚀 Tecnologias utilizadas
 
@@ -36,6 +36,9 @@ Atualmente, o projeto possui:
 * 🌐 Consumo de APIs externas
 * 📡 Requisições HTTP com Requests
 * ⚠️ Tratamento de erros de API
+* 🚨 Tratamento personalizado de erros 404 e 500
+* 🛡️ Tratamento de exceções no banco de dados
+* 🔄 Uso de `rollback()` em operações do banco
 * 📊 Tabela dinâmica com Tabulator
 * 🔎 Busca de consultas por paciente
 * 👨‍⚕️ Busca de consultas por médico
@@ -105,6 +108,86 @@ A busca foi testada em diferentes situações:
 * ✅ Teste da busca diretamente pela API
 * ✅ Teste da busca através da Dashboard
 * ✅ Verificação de que as consultas continuam funcionando normalmente
+
+## 🛡️ Tratamento de erros — Aula 11
+
+A **Aula 11** teve como objetivo tornar o sistema mais robusto e preparado para situações inesperadas durante sua execução.
+
+Foram implementados tratamentos de erros no Back-end, banco de dados e integração com APIs externas.
+
+### Tratamento de erros no Flask
+
+Foram criadas páginas personalizadas para os principais erros HTTP:
+
+* 🚨 **404 — Página não encontrada**
+* 🚨 **500 — Erro interno do servidor**
+
+As páginas foram criadas para apresentar mensagens amigáveis ao usuário, evitando a exibição de páginas técnicas do Flask.
+
+### Tratamento de erros no SQLite
+
+A conexão e as operações com o banco de dados passaram a utilizar tratamento de exceções com:
+
+```python
+try:
+    # operação no banco
+except sqlite3.Error as erro:
+    # tratamento do erro
+```
+
+Também foi implementado:
+
+```python
+rollback()
+```
+
+para desfazer operações quando ocorre uma falha durante uma alteração no banco.
+
+Além disso, foi utilizado:
+
+```python
+finally
+```
+
+para garantir o fechamento da conexão com o banco de dados.
+
+### Tratamento de erros na API externa
+
+A integração com a API externa utilizando `Requests` também recebeu melhorias.
+
+Foram adicionados tratamentos para:
+
+* ⏱️ `Timeout`
+* 🌐 `ConnectionError`
+* 🚨 `HTTPError`
+* ⚠️ `RequestException`
+* 📦 Respostas que não estejam em formato JSON válido
+
+Também foi utilizado um tempo limite para a requisição:
+
+```python
+requests.get(url, timeout=5)
+```
+
+E a resposta HTTP passou a ser validada utilizando:
+
+```python
+resposta.raise_for_status()
+```
+
+### 🧪 Testes realizados na Aula 11
+
+Durante a aula foram realizados testes para garantir que as alterações não quebrassem funcionalidades existentes:
+
+* ✅ Teste da página 404
+* ✅ Teste da aplicação Flask
+* ✅ Teste da conexão com SQLite
+* ✅ Teste da busca de consultas
+* ✅ Teste da exclusão de consultas
+* ✅ Teste da API externa
+* ✅ Verificação do status HTTP `200`
+* ✅ Teste de compilação do `app.py`
+* ✅ Validação das funcionalidades existentes após as alterações
 
 ## 🔌 API de consultas
 
@@ -191,6 +274,10 @@ O projeto está sendo desenvolvido de forma incremental, com cada etapa adiciona
 * ✅ Integração com Tabulator
 * ✅ Exclusão de consultas
 * ✅ Busca de consultas no Back-end
+* ✅ Tratamento de erros no Back-end
+* ✅ Tratamento de erros no SQLite
+* ✅ Tratamento de erros em APIs externas
+* ✅ Páginas personalizadas 404 e 500
 
 ### 🐍 Aula 10 — Busca
 
@@ -210,6 +297,29 @@ Nesta etapa foram aplicados conhecimentos de:
 * JSON
 * Integração entre Back-end e Front-end
 * Testes de API
+
+### 🛡️ Aula 11 — Tratamento de Erros
+
+**Status: ✅ Concluída**
+
+Nesta etapa foram aplicados conhecimentos de:
+
+* Python
+* Flask
+* `try/except`
+* `finally`
+* SQLite
+* `sqlite3.Error`
+* `rollback()`
+* Tratamento de erros HTTP
+* Erros 404 e 500
+* Requests
+* Timeout
+* ConnectionError
+* HTTPError
+* RequestException
+* Validação de respostas de API
+* Testes e validação do sistema
 
 ## 🎯 Próximos passos
 
@@ -237,3 +347,4 @@ O projeto também faz parte da construção do meu portfólio profissional na á
 👨‍💻 **Desenvolvido por Wander Farias**
 
 🐍 Python | 🌐 Flask | 🗄️ SQLite | 🔌 API | 📊 SQL | 🌱 Git/GitHub
+
