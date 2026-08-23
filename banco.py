@@ -4,28 +4,34 @@ import sqlite3
 # Importa a biblioteca os para trabalhar com caminhos de arquivos
 import os
 
+
 def conectar():
     """
-    Cria uma conexão com o banco de dados SQLite
-    Se o banco não existir, ele seá criado automaticamente.
-
+    Cria uma conexão com o banco de dados SQLite.
+    Se ocorrer algum erro durante a conexão, ele será tratado.
     """
 
-    # Obtém o caminho da pasta onde este arquivo (banco.py) está localizado
-    Base_dir = os.path.dirname(os.path.abspath(__file__))
+    try:
 
-    # Monta o caminho completo do arquivo agenda.db
-    caminho_banco = os.path.join(Base_dir, "agenda.db")
+        # Obtém o caminho da pasta onde este arquivo (banco.py) está localizado
+        Base_dir = os.path.dirname(os.path.abspath(__file__))
 
-    # Cria a conexão com o banco 
-    conexao = sqlite3.connect(caminho_banco)
+        # Monta o caminho completo do arquivo agenda.db
+        caminho_banco = os.path.join(Base_dir, "agenda.db")
 
-    # Faz com que os resultados das consultas possam ser acessados pelo nome da coluna
-    # Exemplo:
-    # usuario["nome"]
-    # ao invés de 
-    # usuario[1]
-    conexao.row_factory = sqlite3.Row
+        # Cria a conexão com o banco
+        conexao = sqlite3.connect(caminho_banco)
 
-    # retorna a conexão para quem chamou a função
-    return conexao
+        # Faz com que os resultados possam ser acessados pelo nome da coluna
+        conexao.row_factory = sqlite3.Row
+
+        # Retorna a conexão
+        return conexao
+
+    except sqlite3.Error as erro:
+
+        # Exibe o erro no terminal
+        print(f"Erro ao conectar ao banco de dados: {erro}")
+
+        # Retorna None caso a conexão falhe
+        return None
