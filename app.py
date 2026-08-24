@@ -278,8 +278,7 @@ def erro_interno_servidor(erro):
 # Verifica se este arquivo de código está sendo executado diretamente pelo terminal
 # (ou seja, se você não está apenas importando ele dentro de outro arquivo)
 if __name__ == "__main__":
-    
-    # Inicia o servidor de desenvolvimento para rodar a aplicação web.
-    # O "debug=True" faz o servidor reiniciar automaticamente ao salvar o código 
-    # e mostra mensagens detalhadas de erro na tela caso algo dê errado.
-    app.run(debug=True)
+
+    # Permite que o Flask aceite conexões vindas de fora do container.
+    # mantém nossa aplicação na porta padrão que já colocamos no Dockerfile
+    app.run(host="0.0.0.0", port=5000, debug=True)

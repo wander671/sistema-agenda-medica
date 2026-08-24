@@ -1,0 +1,9 @@
+services:
+  agenda-medica:
+    build: .
+    container_name: agenda-medica-container
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./agenda.db:/app/agenda.db
+    restart: unless-stopped
