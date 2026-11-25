@@ -1,11 +1,14 @@
 from flask import Flask, render_template, request, session, redirect, jsonify
-from banco import conectar
+from banco import conectar, inicializar_banco
 import requests
 import sqlite3
 
 app = Flask(__name__)
 # Chave usada para proteger a sessão
 app.secret_key = "123456"
+
+# CHAMA A INICIALIZAÇÃO DO BANCO AUTOMATICAMENTE AO SUBIR A APLICAÇÃO
+inicializar_banco()
 
 # Define a rota principal (raiz) do sistema
 @app.route("/")
