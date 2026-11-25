@@ -6,6 +6,17 @@ O projeto foi desenvolvido com foco em aprendizado prático de **Back-end com Py
 
 ---
 
+## 🔗 Acesse o Projeto Online
+Você pode testar a aplicação rodando ao vivo na nuvem:
+👉 **[https://sistema-agenda-medica.onrender.com](https://sistema-agenda-medica.onrender.com)**
+
+### 🔑 Credenciais de Acesso (Teste)
+Para acessar o painel administrativo da aplicação, utilize:
+* **Usuário:** `admin`
+* **Senha:** `123`
+
+---
+
 ## 📌 Sobre o projeto
 
 A **Agenda Médica** é uma aplicação web desenvolvida para organizar e gerenciar consultas médicas.
@@ -19,7 +30,6 @@ A aplicação também foi preparada para execução utilizando **Docker e Docker
 ## 🚀 Funcionalidades
 
 ### 🔐 Autenticação
-
 - Login de usuários
 - Controle de sessão
 - Logout
@@ -28,7 +38,6 @@ A aplicação também foi preparada para execução utilizando **Docker e Docker
 - Mostrar/ocultar senha
 
 ### 📊 Dashboard
-
 - Visualização das consultas cadastradas
 - Interface moderna e responsiva
 - Tabela dinâmica com Tabulator
@@ -38,7 +47,6 @@ A aplicação também foi preparada para execução utilizando **Docker e Docker
 - Exclusão de consultas
 
 ### 🔎 Busca
-
 - Busca por paciente
 - Busca por médico
 - Busca geral
@@ -47,7 +55,6 @@ A aplicação também foi preparada para execução utilizando **Docker e Docker
 - Tratamento de busca sem resultados
 
 ### 🗄️ Banco de dados
-
 - SQLite
 - Relacionamento entre tabelas
 - Pacientes
@@ -58,7 +65,6 @@ A aplicação também foi preparada para execução utilizando **Docker e Docker
 - Utilização de `rollback()` em operações com falha
 
 ### 🔌 API REST
-
 - Listagem de consultas
 - Busca de consultas
 - Exclusão de consultas
@@ -67,7 +73,6 @@ A aplicação também foi preparada para execução utilizando **Docker e Docker
 - Integração com o Front-end
 
 ### 🌐 API externa
-
 - Consumo de API externa utilizando Requests
 - Tratamento de `Timeout`
 - Tratamento de `ConnectionError`
@@ -77,7 +82,6 @@ A aplicação também foi preparada para execução utilizando **Docker e Docker
 - Validação de respostas JSON
 
 ### ⚠️ Tratamento de erros
-
 - Página personalizada para erro `404`
 - Página personalizada para erro `500`
 - Tratamento de exceções SQLite
@@ -85,7 +89,6 @@ A aplicação também foi preparada para execução utilizando **Docker e Docker
 - Utilização de `try/except/finally`
 
 ### 🐳 Docker
-
 - Dockerfile
 - Docker Image
 - Docker Container
@@ -142,4 +145,3 @@ agenda-medica/
 ├── seed.py
 ├── requirements.txt
 └── README.md
-
